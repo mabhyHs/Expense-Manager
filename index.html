@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Administrador de Gastos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <nav class="tab">
+            <button class="tablinks" onclick="OpenTab(event, 'info')">INFO</button>
+            <button class="tablinks separate" onclick="OpenTab(event, 'configuracion')">CONFIGURACIÓN</button>
+            <button class="tablinks separate" onclick="OpenTab(event, 'actual')" id="defaultOpen">ACTUAL</button>
+            <button class="tablinks separate" onclick="OpenTab(event, 'section-gastos')">GASTOS</button>
+
+        </nav>
+        <!-- INFORMACIÓN    -->
+        <section id="info" class="tabcontent container">
+            <div class="container">
+                <h3>Magicians</h3>
+                <ol>
+                    <li>Ariel </li>
+                    <li>Mailen</li>
+                    <li>Marc</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- CONFIGURACION -->
+        <section id="configuracion" class="tabcontent">
+            <h3>Configuración de parámetros</h3>
+            <div id="container" class="container configLista ">
+                <form class="configuration-form">
+                    <div>
+                        <button type="submit" id="evaluate" class="edit agregarBtn">Edit</button>
+                    </div>
+                    <div>
+                        <img src="./Assets/img/casa.png" alt="casa" class="rounded-circle">
+                        <label>Vivienda</label>
+                        <input type="text" readonly class="form-control-plaintext" value="%">
+                        <input id="living-place-Input" type="number" min="0" max="100">
+                    </div>
+                    <div>
+                        <img src="./Assets/img/ahorro.png" alt="Alcancia" class="rounded-circle">
+                        <label>Ahorros</label>
+                        <input type="text" readonly class="form-control-plaintext" value="%">
+
+                        <input id="savings-input" type="number" min="0" max="100">
+                    </div>
+                    <div>
+                        <img src="./Assets/img/comida-rapida.png" alt="comida rapida" class="rounded-circle">
+                        <label>Comida</label>
+                        <input type="text" readonly class="form-control-plaintext" value="%">
+
+                        <input id="food-input" type="number" min="0" max="100">
+                    </div>
+                    <div>
+                        <img src="./Assets/img/jugando-a-las-cartas.png" alt="mazo de cartas" class="rounded-circle">
+                        <label>Entretenimiento</label>
+                        <input type="text" readonly class="form-control-plaintext" value="%">
+
+                        <input id="entertainment-input" type="number" min="0" max="100">
+                    </div>
+                    <div>
+                        <img src="./Assets/img/bancarrota.png" alt="billete" class="rounded-circle">
+                        <label>Otros Gastos</label>
+                        <input type="text" readonly class="form-control-plaintext" value="%">
+
+                        <input id="other-expenses-input" type="number" min="0" max="100">
+                    </div>
+                </form>
+
+                <form id="budget-form" class="budget-form">
+                    <div class="form-group">
+                        <input type="text" readonly class="form-control-plaintext ingresoMensual font-weight-bold" value="Ingreso Mensual:">
+                        <input type="number" type="number" id="budget-input" min="500" value="50000" class="ingresoMensual">
+                    </div>
+                    <button type="submit" class="edit agregarBtn" id="budget-submit">Edit</button>
+                </form>
+
+            </div>
+        </section>
+
+        <!-- ACTUAL -->
+
+        <section id="actual" class="tabcontent">
+            <div class="container">
+                <h3>situación Actual</h3>
+                <div class="configuration-form row align-items-center">
+                    <div class="col-md-6">
+                        <div>
+                            <img src="./Assets/img/casa.png" alt="casa" class="rounded-circle">
+                            <label>Vivienda</label>
+                            <input type="text" readonly class="form-control-plaintext" value="%">
+
+                        </div>
+                        <div>
+                            <img src="./Assets/img/ahorro.png" alt="Alcancia" class="rounded-circle">
+                            <label>Ahorros</label>
+                            <input type="text" readonly class="form-control-plaintext" value="%">
+                        </div>
+                        <div>
+                            <img src="./Assets/img/comida-rapida.png" alt="comida rapida" class="rounded-circle">
+                            <label>Comida</label>
+                            <input type="text" readonly class="form-control-plaintext" value="%">
+                        </div>
+                        <div>
+                            <img src="./Assets/img/jugando-a-las-cartas.png" alt="mazo de cartas" class="rounded-circle">
+                            <label>Entretenimiento</label>
+                            <input type="text" readonly class="form-control-plaintext" value="%">
+                        </div>
+                        <div>
+                            <img src="./Assets/img/bancarrota.png" alt="billete" class="rounded-circle">
+                            <label>Otros Gastos</label>
+                            <input type="text" readonly class="form-control-plaintext" value="%">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 saldo-disponible text-center">
+                        <h3 class="text-uppercase font-weight-bold info-title">Saldo Disponible</h3>
+                        <p class="text-uppercase font-weight-bold mt-2" id="balance"><span>$</span><span id="balance-amount">0</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GASTOS -->
+        <section id="section-gastos" class="tabcontent">
+            <h3>Gastos</h3>
+
+            <div class="container" id="contenido">
+                <div class="agregar-gasto">
+                    <form id="expense-form" action="">
+                        <div class="row">
+                            <div class="col">
+                                <label for="inlineFormCustomSelect">Clasificación</label>
+                                <select class="form-control form-control-sm" id="expense-input" name="clasificacion">
+                            <option value="" disabled selected></option>
+                            <option value="Vivienda" name="vivienda">Vivienda</option>
+                            <option value="Ahorros" name="ahorros">Ahorros</option>
+                            <option value="Comida" name="comida">Comida</option>
+                            <option value="Entretenimiento" name="entretenimiento">Entretenimiento</option>
+                            <option value="Otros Gastos" name="Otros Gastos">Otros Gastos</option>
+
+                             </select>
+                            </div>
+                            <div class="col" id="hiddenMobile">
+                                <label for="descripcion">Descripción</label>
+                                <input type="text" id="description-input" name="descripcion" class="form-control form-control-sm">
+                            </div>
+
+                            <div class="col">
+                                <label for="valor">Valor</label>
+                                <input type="number" id="amount-input" name="valor" class="form-control form-control-sm">
+                            </div>
+
+                            <div class="col" id="colAcciones">
+                                <label for="acciones">Acciones</label><br>
+                                <button type="submit" class="agregarBtn" id="expense-submit">Agregar</button>
+                                <button type="cancel" class="agregarBtn" id="expense-cancel">Cancelar</button>
+
+                            </div>
+                        </div>
+                </div>
+                </form>
+
+                <ul id="expense-list" class="list-group col"></ul>
+
+        </section>
+
+
+
+        <script src="./js/app.js"></script>
+
+        <footer>
+            <p>Copyright 2020 MabhyHs</p>
+        </footer>
+</body>
+
+</html>
